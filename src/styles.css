@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.not_spaces{
+  padding: 0px;
+  margin: 0px;
+}
+
+.background_primary {
+  background: linear-gradient(to right, #00b1eb 0%, #619dfd 51%, #00b1eb 100%);
+}

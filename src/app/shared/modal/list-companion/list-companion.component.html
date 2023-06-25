@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Guest List</h4>
+  <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="close()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row" [ngSwitch]="selectView ">
+      <ng-template [ngSwitchCase]="'photos'">Photos</ng-template>
+
+      <ng-template ngSwitchDefault>
+          <div class="col-md-12 mt-3" *ngIf="dataCompanion != null">
+              <!-- <span style="font-weight: 600;font-size: 16px;">Guest List</span> -->
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Last Name</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Companion</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of dataCompanion; let i = index">
+                          <th scope="row">{{i+1}}</th>
+                          <td>{{item.lastName}}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{item.lastname_companion}} {{item.name_companion}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </ng-template>
+
+  </div>
+</div>
