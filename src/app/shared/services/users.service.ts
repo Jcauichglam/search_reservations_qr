@@ -25,4 +25,18 @@ export class UsersService {
     return this.http.get<any>(`${this.urlApi}/restaurants/participant`, { params });
   }
 
+  getReservationRestaurant(email){
+    let params = new HttpParams();
+    params = params.append('email', email);
+
+    return this.http.get<any>(`${this.urlApi}/users/companion/reservations`, { params });
+  }
+
+  getReservationCompanion(email){
+    let params = new HttpParams();
+    params = params.append('email', email);
+
+    return this.http.get<any>(`${this.urlApi}/users/companion/detail`, { params });
+  }
+
 }

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlApibase: "https://api.cancundinearound.com/api/v1"
+  urlApibase: "https://coredmccancun.azurewebsites.net/api/v1"
 };

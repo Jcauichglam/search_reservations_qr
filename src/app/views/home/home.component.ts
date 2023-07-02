@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPlane, faPersonSwimming, faUtensils, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPlane, faPersonSwimming, faUtensils, faUser, faUserCheck, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
 import { ListCompanionComponent } from 'src/app/shared/modal/list-companion/list-companion.component';
 import { RestaurantService } from 'src/app/shared/services/restaurant.service';
 import { UsersService } from 'src/app/shared/services/users.service';
@@ -21,8 +21,10 @@ export class HomeComponent implements OnInit{
   email: any;
   userInfo: any;
   iconplane = faPlane
+  iconNotes = faNoteSticky;
   iconSwwinming = faPersonSwimming;
   iconRestaurant = faUtensils;
+  iconuser = faUserCheck;
   selectOption: any;
   userInfoRestaurant: any;
   dataReservationsOwner: any;
@@ -30,6 +32,8 @@ export class HomeComponent implements OnInit{
   dataActivity: any;
   dataInformationArrival: any;
   dataInformationDeparture: any;
+  dataResertaurantReservation: any;
+  dataInformationCompanionEmail: any;
 
   constructor(
     private router: Router,
@@ -42,7 +46,10 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.getUrlParams();
+    this.getCompanionInformation()
     this.getInformationUser();
+    this.getAllMyReservations();
+
   }
 
   getUrlParams(){
@@ -60,10 +67,21 @@ export class HomeComponent implements OnInit{
     }
     else if(option == 2){
       this.getListReservationActivity();
+    }else if(option == 4){
+      this.getListReservationCompanionRestaurant();
+      this.getListReservationActivityCompanion();
+      this.getDataArrivalCompanion();
+      this.getDataDepartureCompanion();
     }else if(option == 3){
       this.getDataArrival();
       this.getDataDeparture();
+    }else if(option == 5){
+      alert("obtener informacion");
     }
+  }
+
+  getListReservationCompanion(){
+    alert("debe cargar companion");
   }
 
   getAllMyReservations(){
@@ -145,4 +163,43 @@ export class HomeComponent implements OnInit{
     })
   }
 
+  getListReservationCompanionRestaurant(){
+    this.ngxService.start();
+    this.userService.getReservationRestaurant(this.dataInformationCompanionEmail.email_companion).subscribe(result => {
+      this.dataResertaurantReservation = result;
+      this.ngxService.stop();
+    })
+  }
+
+  getListReservationActivityCompanion(){
+    this.ngxService.start();
+    this.activitieService.getActivityByeEmail(this.dataInformationCompanionEmail.email_companion).subscribe(result => {
+      this.dataActivity = result;
+      this.ngxService.stop();
+    })
+  }
+
+  getCompanionInformation(){
+    this.ngxService.start();
+    this.userService.getReservationCompanion(this.email).subscribe(result => {
+      this.ngxService.stop();
+      this.dataInformationCompanionEmail = result;
+    })
+  }
+
+  getDataArrivalCompanion(){
+    this.ngxService.start();
+    this.userService.getInformationUser(this.dataInformationCompanionEmail.email_companion, 1).subscribe(result => {
+      this.dataInformationArrival = result;
+      this.ngxService.stop();
+    })
+  }
+
+  getDataDepartureCompanion(){
+    this.ngxService.start();
+    this.userService.getInformationUser(this.dataInformationCompanionEmail.email_companion, 2).subscribe(result => {
+      this.dataInformationDeparture = result;
+      this.ngxService.stop();
+    })
+  }
 }

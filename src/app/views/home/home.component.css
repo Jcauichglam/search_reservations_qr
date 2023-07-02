@@ -30,6 +30,16 @@ body, html {
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   display: flex;
 }
+
+@media only screen and (max-width: 600px) {
+  .booking-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 20px;
+  }
+}
+
 .booking-card-image {
   flex: 1;
   height: 100%;
@@ -46,7 +56,7 @@ body, html {
   flex-direction: column;
 }
 .booking-card-description {
-  margin-top: 10px;
+  margin-top: 0px;
   margin-left: 20px;
    margin-bottom: 10px;
 }

@@ -86,51 +86,58 @@
 
 <div class="col-md-12 not_spaces">
   <div class="row not_spaces">
-    <div class="col-md-4 text-center" style="background-color: #5e85ce;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(1)">
-      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconRestaurant"></fa-icon> Restaurant Reservations</span>
+
+    <div class="col text-center" style="background-color: #5e85ce;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(1)">
+      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconRestaurant"></fa-icon>  <br>Restaurant Reservations</span>
     </div>
 
-    <div class="col-md-4 text-center" style="background-color: #4671bf;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(2)">
-      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconSwwinming"></fa-icon> Excursions Reservations</span>
+    <div class="col text-center" style="background-color: #2c5093;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(4)">
+      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconuser"></fa-icon> <br>Companion Reservations</span>
     </div>
 
-    <div class="col-md-4 text-center" style="background-color: #53bdf7;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(3)">
-      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconplane"></fa-icon> Flight Information</span>
+    <div class="col text-center" style="background-color: #4671bf;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(2)">
+      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconSwwinming"></fa-icon> <br>Excursions Reservations</span>
+    </div>
+
+    <div class="col text-center" style="background-color: #53bdf7;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(3)">
+      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconplane"></fa-icon><br> Flight Information</span>
+    </div>
+
+    <div class="col text-center" style="background-color: #1684bf;padding: 30px 0px;cursor: pointer;" (click)="selectOptionReservation(5)">
+      <span style="color: #fff;font-size: 24px;font-weight: 900;"><fa-icon [icon]="iconNotes"></fa-icon><br> Special Notes</span>
     </div>
   </div>
 </div>
 
 <div class="col-md-12" style="background-color: #e6e6e6;">
 
-  <div class="col-md-12 text-center pt-4" style="">
-    <h2 style="font-weight: 600;">Welcome {{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }} <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
-  </div>
-
-  <div class="row" style="height: 100vh;background-color: #e6e6e6;padding: 15px 40px;">
+  <div class="row" style="height: 100%;background-color: #e6e6e6;padding: 15px 40px;">
 
     <div class="col-md-12" *ngIf="selectOption == 1">
-      <!-- <div class="col-md-12 text-center">
-        <span style="font-size: 20px;font-weight: 600;">Name Of Group: Aerotek</span>
-      </div> -->
+      <div class="col-md-12 text-center pt-4" style="">
+        <h2 style="font-weight: 600;">Welcome {{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }} <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
+      </div>
 
       <div class="row col-md-12 shadow mt-5" style="padding: 10px 20px 10px 20px;border: 1px solid #ede0e0;margin: 0px;border-radius: 5px;" *ngFor="let item of dataReservationsOwner; let i = index;">
         <div class="col-md-12 text-center" style="padding: 10px 0px">
-            <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'">Owner <span *ngIf="item.type_Reservation == 2">Reservation</span> <span *ngIf="item.type_Reservation == 1">- Team Dinner</span></span>
-            <span style="font-size: 20px;" *ngIf="item.type_participant == 'companion'">Guest <span *ngIf="item.type_Reservation == 2">Reservation</span> <span *ngIf="item.type_Reservation == 1">- Team Dinner</span></span>
-            <!-- <span style="position: absolute;left: 85%;" *ngIf="item.type_participant == 'owner'">
-                <fa-icon [icon]="faTrash" style="color: #ff0000;font-size: 20px;" (click)="trashReservation(item.id)"></fa-icon>
-            </span> -->
+            <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span *ngIf="item.type_Reservation == 2">Reservation</span> <span *ngIf="item.type_Reservation == 1">Reservation</span></span>
+            <span style="font-size: 20px;" *ngIf="item.type_participant == 'companion'"><span *ngIf="item.type_Reservation == 2">Reservation</span> <span *ngIf="item.type_Reservation == 1">Reservation</span></span>
         </div>
         <hr>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <span style="font-size: 14px;">Restaurant:</span>
             <br>
             <span class="color_primary" style="font-size: 18px;">{{item.name_restaurant}}</span>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <span style="font-size: 14px;">Host:</span>
             <br>
             <span class="color_primary" style="font-size: 18px;">{{item.name}} {{item.lastName}}</span>
+        </div>
+        <div class="col-md-2">
+          <span style="font-size: 14px;">Companion:</span>
+          <br>
+          <span class="color_primary" style="font-size: 18px;">{{item.companion_name}} {{item.companion_lastname}}</span>
         </div>
         <div class="col-md-2">
             <span style="font-size: 14px;">Date:</span>
@@ -150,10 +157,9 @@
     </div>
 
     <div class="col-md-12" *ngIf="selectOption == 2">
-      <div class="col-md-12 text-center">
-        <span style="font-size: 20px;font-weight: 600;">Name Of Group: Aerotek</span>
+      <div class="col-md-12 text-center pt-4" style="">
+        <h2 style="font-weight: 600;">Welcome {{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }} <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
       </div>
-
       <div class="row col-md-12 mt-4">
         <div class="col-md-6 mt-4" *ngFor="let item of dataActivity;">
           <div class="wrapper">
@@ -177,10 +183,9 @@
     </div>
 
     <div class="col-md-12" *ngIf="selectOption == 3">
-      <div class="col-md-12 text-center">
-        <span style="font-size: 20px;font-weight: 600;">Name Of Group: Aerotek</span>
+      <div class="col-md-12 text-center pt-4" style="">
+        <h2 style="font-weight: 600;">Welcome {{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }} <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
       </div>
-
       <div class="row col-md-12 mt-4">
         <div class="col-md-6">
           <div class="wrapper">
@@ -193,8 +198,119 @@
                   <h1>Arrival Information</h1>
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationArrival.lastname}} {{dataInformationArrival.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel Arrival:</span> {{dataInformationArrival.name_hotel}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Arrival:</span> {{dataInformationArrival.arrival_Date | date: 'MM-dd-YYYY' }} / {{dataInformationArrival.arrival_Time | convertFrom24To12Format}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Arrival:</span> {{dataInformationArrival.arrival_Date | date: 'EEEE, MMMM d, y' }} / {{dataInformationArrival.arrival_Time | convertFrom24To12Format}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span> {{dataInformationArrival.name_airline}} @ #{{dataInformationArrival.flight_Number}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="wrapper">
+            <div class="booking-card-wrapper">
+              <div class="booking-card-image">
+                <img class="booking-card-image" src="../../../assets/img/arrival.png"/>
+              </div>
+              <div class="booking-card-content">
+                <div class="booking-card-description">
+                  <h1>Departure Information</h1>
+                  <p class="mt-1"  style="font-weight: 800;"><span style="font-weight: 800;">Pick Up:</span> {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
+                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationDeparture.lastname}} {{dataInformationDeparture.name}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Hotel Departure:</span> {{dataInformationDeparture.name_hotel}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Departure:</span> {{dataInformationDeparture.departure_Date | date: 'EEEE, MMMM d, y'}} / {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span> {{dataInformationDeparture.name_airline}} @ #{{dataInformationDeparture.flight_Number}}</p>
+                  <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" *ngIf="selectOption == 4">
+      <div class="col-md-12 text-center pt-4" style="">
+        <h2 style="font-weight: 600;">Companion {{dataInformationCompanionEmail.name_companion | titlecase }} <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
+      </div>
+      <div class="row col-md-12 mt-4">
+        <div class="col-md-12">
+          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Restaurant Reservations</div>
+        </div>
+        <div class="row col-md-12 shadow mt-3" style="padding: 10px 20px 10px 20px;border: 1px solid #ede0e0;margin: 0px;border-radius: 5px;" *ngFor="let item of dataResertaurantReservation; let i = index;">
+          <div class="col-md-12 text-center" style="padding: 10px 0px">
+              <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span *ngIf="item.type_Reservation == 2">Reservation</span> <span *ngIf="item.type_Reservation == 1">Reservation</span></span>
+              <span style="font-size: 20px;" *ngIf="item.type_participant == 'companion'"><span *ngIf="item.type_Reservation == 2">Reservation</span> <span *ngIf="item.type_Reservation == 1">Reservation</span></span>
+          </div>
+          <hr>
+          <div class="col-md-3">
+              <span style="font-size: 14px;">Restaurant:</span>
+              <br>
+              <span class="color_primary" style="font-size: 18px;">{{item.name_restaurant}}</span>
+          </div>
+          <div class="col-md-3">
+              <span style="font-size: 14px;">Host:</span>
+              <br>
+              <span class="color_primary" style="font-size: 18px;">{{item.name}} {{item.lastName}}</span>
+          </div>
+          <div class="col-md-2">
+              <span style="font-size: 14px;">Date:</span>
+              <br>
+              <span style="font-size: 18px;">{{item.date_Reservation | date: 'MM-dd-YYYY'}}</span>
+          </div>
+          <div class="col-md-2">
+              <span style="font-size: 14px;">Hour:</span>
+              <br>
+              <span style="font-size: 18px;">{{item.time_Reservation}} PM</span>
+          </div>
+          <div class="col-md-2" style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+              <button class="btn background_primary text-white" *ngIf="item.type_participant == 'owner'" (click)="showModalListCompanion(item.id, item.date_Reservation)">Attendee list</button>
+              <button class="btn background_primary text-white" *ngIf="item.type_participant != 'owner'" (click)="showModalListCompanionView(item.id, item.date_Reservation)">Attendee list</button>
+          </div>
+      </div>
+      </div>
+
+      <div class="row col-md-12 mt-4">
+        <div class="col-md-12 mt-3">
+          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Excursions Reservations</div>
+        </div>
+        <div class="col-md-6 mt-4" *ngFor="let item of dataActivity;">
+          <div class="wrapper">
+            <div class="booking-card-wrapper">
+              <div class="booking-card-image">
+                <img class="booking-card-image" src="{{item.url}}" />
+              </div>
+              <div class="booking-card-content">
+                <div class="booking-card-description">
+                  <h1>Booking Data</h1>
+                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span> {{item.date_Reservation | date: 'MM-dd-yyyy'}} / {{item.time_Reservation}} PM</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.on_Board_Hotel}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row col-md-12 mt-4 mb-4">
+        <div class="col-md-12 mt-3 mb-3">
+          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Flight Reservations</div>
+        </div>
+        <div class="col-md-6">
+          <div class="wrapper">
+            <div class="booking-card-wrapper">
+              <div class="booking-card-image">
+                <img class="booking-card-image" src="../../../assets/img/departure.png" />
+              </div>
+              <div class="booking-card-content">
+                <div class="booking-card-description">
+                  <h1>Arrival Information</h1>
+                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationArrival?.lastname}} {{dataInformationArrival?.name}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Hotel Arrival:</span> {{dataInformationArrival?.name_hotel}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Arrival:</span> {{dataInformationArrival?.arrival_Date | date: 'EEEE, MMMM d, y' }} / {{dataInformationArrival.arrival_Time | convertFrom24To12Format}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span> {{dataInformationArrival?.name_airline}} @ #{{dataInformationArrival?.flight_Number}}</p>
                   <!-- <p class="mt-1"><span style="font-weight: 600;">:</span> </p> -->
                   <!-- <p class="mt-1"><span style="font-weight: 600;">Pick Up:</span> 09:00 PM</p> -->
                 </div>
@@ -212,16 +328,25 @@
               <div class="booking-card-content">
                 <div class="booking-card-description">
                   <h1>Departure Information</h1>
+                  <p class="mt-1"  style="font-weight: 800;"><span style="font-weight: 800;">Pick Up:</span> {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationDeparture.lastname}} {{dataInformationDeparture.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel Departure:</span> {{dataInformationDeparture.name_hotel}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Departure:</span> {{dataInformationDeparture.departure_Date | date: 'MM-dd-YYYY'}} / {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Pick Up:</span> {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Departure:</span> {{dataInformationDeparture.departure_Date | date: 'EEEE, MMMM d, y'}} / {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span> {{dataInformationDeparture.name_airline}} @ #{{dataInformationDeparture.flight_Number}}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" *ngIf="selectOption == 5">
+      <div class="col-md-12 text-center pt-4" style="">
+        <h2 style="font-weight: 600;">Welcome {{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }} <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
+      </div>
+      <div class="row col-md-12 mt-4">
+        asdasd
       </div>
     </div>
   </div>
