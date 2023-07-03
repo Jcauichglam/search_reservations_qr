@@ -14,6 +14,7 @@ import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER }
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ListCompanionNotPropertyComponent } from './shared/modal/list-companion-not-property/list-companion-not-property.component';
 import { ConvertFrom24To12FormatPipe } from './convert-from24-to12-format.pipe';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -45,6 +46,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FontAwesomeModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
