@@ -1,0 +1,15 @@
+<body>
+  <div style="display: flex;flex-direction: column;">
+    <form [formGroup]="formSearch">
+      <h1 style="color: #000;">What is your email?</h1>
+      <div class="box">
+        <i class="fa-brands fa-searching"></i>
+        <input type="text" name="" formControlName="email">
+      </div>
+
+      <div class="w-100">
+        <button type="button" class="w-100 mt-4 btn btn-primary" style="height: 40px;" (click)="searchReservation()">SEARCH RESERVATIONS</button>
+      </div>
+    </form>
+  </div>
+</body>

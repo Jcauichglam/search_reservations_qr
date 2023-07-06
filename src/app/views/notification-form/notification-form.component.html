@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row" style="
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+">
+    <div class="col-sm-8 col-sm-offset-2">
+      <!-- Default form -->
+      <form action="" class='pad-bg' [formGroup]="formNotification">
+        <h1 class="text-center">FORM NOTIFICATION</h1>
+        <div class="form-group">
+          <label for="">TITLE</label>
+          <input type="text" class="i-box form-control input-lg" formControlName="title"/>
+        </div>
+        <div class="form-group">
+          <label for="">CONTENT</label>
+          <textarea name="" class="form-control input-lg" id="" cols="30" rows="10" formControlName="content"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="">SELECT GROUP</label>
+          <select class="form-select" aria-label="Default select example" formControlName="group">
+            <option value="" selected>SELECT GROUP</option>
+            <option value="aerotek">AEROTEK</option>
+            <option value="teksystems">TEKSYSTEMS</option>
+            <option value="mla">MLA</option>
+          </select>
+        </div>
+        <div class="w-100 mt-4">
+          <button class="btn btn-primary btn-lg w-100" (click)="sendNotification()">SEND NOTIFICATION</button>
+        </div>
+      </form>
+      <!-- Horizontal form -->
+    </div>
+  </div>
+</div>

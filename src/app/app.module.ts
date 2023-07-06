@@ -15,6 +15,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ListCompanionNotPropertyComponent } from './shared/modal/list-companion-not-property/list-companion-not-property.component';
 import { ConvertFrom24To12FormatPipe } from './convert-from24-to12-format.pipe';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { environment } from 'src/environments/environment';
+import { initializeApp } from "firebase/app";
+import { SearchComponent } from './views/search/search.component';
+import { NotificationFormComponent } from './views/notification-form/notification-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -26,6 +31,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   pbThickness: 5, // progress bar thickness
 };
 
+initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -35,7 +41,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FooterComponent,
     ListCompanionComponent,
     ListCompanionNotPropertyComponent,
-    ConvertFrom24To12FormatPipe
+    ConvertFrom24To12FormatPipe,
+    SearchComponent,
+    NotificationFormComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -46,7 +54,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FontAwesomeModule,
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    PdfViewerModule
+    PdfViewerModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
