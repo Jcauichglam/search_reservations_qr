@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { environment } from 'src/environments/environment';
-import {
-  ActionPerformed,
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
-} from '@capacitor/push-notifications';
+
 
 @Component({
   selector: 'app-root',
