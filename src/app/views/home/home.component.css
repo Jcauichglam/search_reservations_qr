@@ -10,11 +10,14 @@
   --fuscous-gray: #585B4E;
   --leather: #907B55;
 }
+
 * {
   margin: 0;
   padding: 0;
 }
-body, html {
+
+body,
+html {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +26,7 @@ body, html {
   font-family: 'Tajawal', sans-serif;
   color: var(--rangoon-green);
 }
+
 .booking-card-wrapper {
   height: 200px;
   width: 95%;
@@ -50,40 +54,48 @@ body, html {
 .price {
   font-weight: 700;
 }
+
 .booking-card-content {
   flex: 2;
   display: flex;
   flex-direction: column;
 }
+
 .booking-card-description {
   margin-top: 0px;
   margin-left: 20px;
-   margin-bottom: 10px;
+  margin-bottom: 10px;
 }
+
 .booking-card-description h1 {
   font-size: 24px;
   font-weight: 700;
   margin: 5px 0px;
   color: hsle(0, 0%, 13%)
 }
+
 .booking-card-details {
   flex: 1;
   padding-left: 20px;
   padding-top: 20px;
   background-color: #e4e4e3;
 }
+
 i.fa-star {
   color: var(--faded-jade);
   font-size: 16px;
 }
+
 .reviews {
   font-size: 10px;
   color: hsl(0, 0%, 45%);
   margin-top: 5px;
 }
+
 .reviews .amount {
   padding-left: 3px;
 }
+
 .side-note {
   margin-top: 10px;
   font-size: 10px;
@@ -117,4 +129,79 @@ button:hover {
 
 .flex {
   display: flex;
+}
+
+
+.menu_option_1 {
+  background-color: #5e85ce;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
+.menu_option_2 {
+  background-color: #4671bf;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
+.menu_option_3 {
+  background-color: #53bdf7;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
+.menu_option_4 {
+  background-color: #2c5093;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
+.menu_option_5 {
+  background-color: #1684bf;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
+.menu_text {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+@media only screen and (max-width: 600px) {
+  .menu_text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .menu_option_1 {
+    background-color: #5e85ce;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+
+  .menu_option_2 {
+    background-color: #4671bf;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+
+  .menu_option_3 {
+    background-color: #53bdf7;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+
+  .menu_option_4 {
+    background-color: #2c5093;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+
+  .menu_option_5 {
+    background-color: #1684bf;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
 }

@@ -1,10 +1,15 @@
-<body>
-  <div style="display: flex;flex-direction: column;">
-    <form [formGroup]="formSearch">
-      <h1 style="color: #000;">What is your email?</h1>
-      <div class="box">
-        <i class="fa-brands fa-searching"></i>
-        <input type="text" name="" formControlName="email">
+<div class="row not_spaces height_full">
+  <div class="col-md-12 width_custom">
+    <img src="../../../assets/img/logo-aerotek.png" class="width_mobile mb-3" alt="">
+    <div class="col-md-12">
+      <h2 class="text-center">WHAT IS YOUR EMAIL?</h2>
+    </div>
+    <form [formGroup]="formSearch" class="w-100">
+      <div class="input-group mb-0 w-100">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Email</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" formControlName="email">
       </div>
 
       <div class="w-100">
@@ -12,4 +17,4 @@
       </div>
     </form>
   </div>
-</body>
+</div>
