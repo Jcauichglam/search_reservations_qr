@@ -21,6 +21,7 @@ import { SearchComponent } from './views/search/search.component';
 import { NotificationFormComponent } from './views/notification-form/notification-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ToastrModule } from 'ngx-toastr';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -63,7 +64,8 @@ initializeApp(environment.firebase);
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

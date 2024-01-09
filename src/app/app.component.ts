@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 
 
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
   title = 'search_reservations_qr';
   message: any = null;
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
   ngOnInit(): void {
     this.requestPermission();
     this.listen();
@@ -53,6 +54,12 @@ export class AppComponent {
     onMessage(messaging, (payload) => {
       console.log('Message received. ', payload);
       this.message = payload;
+    });
+  }
+
+  showAlert(){
+    this.toastr.success('Due to rain, the location is changed', 'Change Location!', {
+      timeOut: 5000,
     });
   }
 

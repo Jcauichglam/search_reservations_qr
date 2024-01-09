@@ -109,6 +109,7 @@ export class HomeComponent implements OnInit{
 
   getAllMyReservations(){
     this.ngxService.start();
+    debugger
     this.restaurantService.GetMyReservationsByParticipantId(this.userInfoRestaurant.id).subscribe(result => {
       this.dataReservationsOwner = result;
       this.ngxService.stop();
@@ -133,6 +134,7 @@ export class HomeComponent implements OnInit{
   getInformationUser(){
     this.ngxService.start();
     this.userService.getInformationUser(this.email, 1).subscribe(result => {
+      debugger;
       this.userInfo = result;
       this.ngxService.stop();
     })

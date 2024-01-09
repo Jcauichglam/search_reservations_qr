@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApibase: "https://dmccancunapi.azurewebsites.net/api/v1",
+  urlApibase: "https://localhost:44336/api/v1",
   firebase: {
     apiKey: "AIzaSyAv3jouDASbbTg57oWKKj32LwYBf8_B-U0",
     authDomain: "dmc-cancun.firebaseapp.com",

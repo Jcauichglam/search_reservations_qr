@@ -162,6 +162,12 @@ button:hover {
   cursor: pointer;
 }
 
+.menu_option_6 {
+  background-color: #1684bf;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
 .menu_text {
   color: #fff;
   font-size: 22px;
@@ -200,6 +206,12 @@ button:hover {
   }
 
   .menu_option_5 {
+    background-color: #1684bf;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+
+  .menu_option_6{
     background-color: #1684bf;
     padding: 20px 15px;
     cursor: pointer;
