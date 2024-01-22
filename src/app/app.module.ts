@@ -22,6 +22,7 @@ import { NotificationFormComponent } from './views/notification-form/notificatio
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ToastrModule } from 'ngx-toastr';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -65,7 +66,8 @@ initializeApp(environment.firebase);
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    AutocompleteLibModule
   ],
   providers: [],
   bootstrap: [AppComponent]

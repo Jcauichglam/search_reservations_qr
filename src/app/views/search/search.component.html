@@ -5,12 +5,39 @@
       <h2 class="text-center">TYPE YOUR EMAIL</h2>
     </div>
     <form [formGroup]="formSearch" class="w-100">
-      <div class="input-group mb-0 w-100">
+      <!-- <div class="input-group mb-0 w-100">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Email</span>
         </div>
         <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" formControlName="email">
-      </div>
+      </div> -->
+      <div class="input-group mb-0 w-100 ng-autocomplete">
+        <ng-autocomplete
+          [data]="result_people"
+          [searchKeyword]="keyword"
+          placeholder="Enter your email or name"
+          (selected)='selectEvent($event)'
+          (inputChanged)='onChangeSearch($event)'
+          (inputFocused)='onFocused($event)'
+          [itemTemplate]="firstItemTemplate"
+          [notFoundTemplate]="notFoundTemplate">
+        </ng-autocomplete>
+
+        <ng-template #firstItemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+        </ng-template>
+
+        <!-- <ng-template #secondItemTemplate let-item>
+          <a [innerHTML]="item.email"></a>
+          </ng-template> -->
+        <!-- <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.email"></a>
+          </ng-template> -->
+
+        <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+        </ng-template>
+        </div>
 
       <div class="w-100">
         <button type="button" class="w-100 mt-4 btn btn-primary" style="height: 40px;" (click)="searchReservation()">SEARCH RESERVATIONS</button>

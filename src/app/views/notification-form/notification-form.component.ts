@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class NotificationFormComponent {
   formNotification: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private notificationServices: NotificationService) {
+    private notificationServices: NotificationService,
+    private ngxServices: NgxUiLoaderService) {
   }
 
   ngOnInit(): void {
@@ -23,14 +25,21 @@ export class NotificationFormComponent {
     this.formNotification = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      group: ['']
+      group: [''],
+      email: ['']
     });
   }
 
   sendNotification(){
+    this.ngxServices.start();
+
+
+
     this.notificationServices.sendPushNotification(this.formNotification.value).subscribe(result =>{
-      // alert("termino");
-      this.formNotification.reset();
+      this.notificationServices.addNotification(this.formNotification.value).subscribe(result => {
+        this.formNotification.reset();
+        this.ngxServices.stop();
+      })
     })
   }
 

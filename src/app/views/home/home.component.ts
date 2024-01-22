@@ -9,6 +9,7 @@ import { ListCompanionNotPropertyComponent } from 'src/app/shared/modal/list-com
 import { ActivityService } from 'src/app/shared/services/activity.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { EventsService } from 'src/app/shared/services/events.service';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +39,8 @@ export class HomeComponent implements OnInit{
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   isViewCompanion: boolean = false;
   dataEvent: any = [];
+  event_id = 1;
+  notifications: any;
 
   constructor(
     private router: Router,
@@ -46,7 +49,8 @@ export class HomeComponent implements OnInit{
     private modalService: BsModalService,
     private activitieService: ActivityService,
     private ngxService: NgxUiLoaderService,
-    private eventServices: EventsService
+    private eventServices: EventsService,
+    private notificationsServices: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -74,6 +78,9 @@ export class HomeComponent implements OnInit{
       this.getListReservationActivity();
     }else if(option == 4){
       if(this.dataInformationCompanionEmail.email_companion != "" && this.dataInformationCompanionEmail.email_companion != null){
+        this.dataInformationArrival = null;
+        this.dataInformationDeparture = null;
+        this.dataResertaurantReservation = null;
         this.getListReservationCompanionRestaurant();
         this.getListReservationActivityCompanion();
         this.getDataArrivalCompanion();
@@ -87,16 +94,30 @@ export class HomeComponent implements OnInit{
       this.getDataDeparture();
     }else if(option == 5){
       this.getEventsByUserId();
+    }else if(option == 6){
+      this.getNotificationsByEventId();
     }
+  }
+
+  getNotificationsByEventId(){
+    this.ngxService.start();
+    this.notificationsServices.GetNotificationsByEventId(this.event_id).subscribe(result => {
+      this.notifications = result;
+      this.ngxService.stop();
+    })
   }
 
   getEventsByUserId(){
     this.ngxService.start();
+    debugger;
     this.dataEvent = [];
     this.eventServices.getAllEventsUser(this.userInfoRestaurant.id).subscribe(result =>{
       result.forEach(element => {
         this.eventServices.GetEventInformationById(element.event_Id).subscribe(result =>{
-          this.dataEvent.push(result);
+          if(result != null){
+            this.dataEvent.push(result);
+          }
+
           this.ngxService.stop();
         })
       });
@@ -109,7 +130,6 @@ export class HomeComponent implements OnInit{
 
   getAllMyReservations(){
     this.ngxService.start();
-    debugger
     this.restaurantService.GetMyReservationsByParticipantId(this.userInfoRestaurant.id).subscribe(result => {
       this.dataReservationsOwner = result;
       this.ngxService.stop();
@@ -134,7 +154,6 @@ export class HomeComponent implements OnInit{
   getInformationUser(){
     this.ngxService.start();
     this.userService.getInformationUser(this.email, 1).subscribe(result => {
-      debugger;
       this.userInfo = result;
       this.ngxService.stop();
     })

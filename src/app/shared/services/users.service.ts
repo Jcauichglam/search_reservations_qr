@@ -39,4 +39,11 @@ export class UsersService {
     return this.http.get<any>(`${this.urlApi}/users/companion/detail`, { params });
   }
 
+  getSearchUserAuto(event_id, search){
+    let params = new HttpParams();
+    params = params.append('search', search);
+
+    return this.http.get<any>(`${this.urlApi}/users/${event_id}/events/search`, { params });
+  }
+
 }

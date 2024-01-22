@@ -163,7 +163,13 @@ button:hover {
 }
 
 .menu_option_6 {
-  background-color: #1684bf;
+  background-color: #3cb1f0;
+  padding: 20px 0px;
+  cursor: pointer;
+}
+
+.menu_option_7{
+  background-color: #068bd3;
   padding: 20px 0px;
   cursor: pointer;
 }

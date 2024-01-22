@@ -1,11 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
+
+  urlApi = environment.urlApibase;
+  group = "aerotek";
+  event_id = environment.event_id;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -16,7 +21,21 @@ export class NotificationService {
 
   constructor(public http: HttpClient) { }
 
+  addNotification(model){
+    return this.http.post<any>(`${this.urlApi}/notifications`, {
+      Event_Id: this.event_id,
+      Title: model.title,
+      Message: model.content,
+      Email: model.email
+    });
+  }
+
+  GetNotificationsByEventId(event_id){
+    return this.http.get<any>(`${this.urlApi}/notifications/event/${event_id}`);
+  }
+
   sendPushNotification(content) {
+    let group = this.group;
     let url = 'https://fcm.googleapis.com/fcm/send';
     let body =
     {
@@ -24,7 +43,7 @@ export class NotificationService {
           "title": content.title,
           "body": content.content
       },
-      "to": "/topics/" + content.group
+      "to": "/topics/" + group
     };
 
     let headers: Headers = new Headers({
