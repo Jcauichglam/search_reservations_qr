@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ToastrModule } from 'ngx-toastr';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { Format12hoursPipe } from './format12hours.pipe';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -46,7 +47,8 @@ initializeApp(environment.firebase);
     ListCompanionNotPropertyComponent,
     ConvertFrom24To12FormatPipe,
     SearchComponent,
-    NotificationFormComponent
+    NotificationFormComponent,
+    Format12hoursPipe
   ],
   imports: [
     BrowserAnimationsModule,

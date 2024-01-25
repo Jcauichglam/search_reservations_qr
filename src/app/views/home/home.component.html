@@ -120,7 +120,7 @@
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
-                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation}} PM</p>
+                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation | convertFrom24To12Format}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.hotel_Name}}</p>
                 </div>
               </div>
@@ -149,7 +149,7 @@
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
-                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation}} PM</p>
+                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation  | convertFrom24To12Format }} </p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.hotel_Name}}</p>
                 </div>
               </div>
@@ -322,7 +322,7 @@
             <th scope="col-md-4">#</th>
             <th scope="col-md-4">Title</th>
             <th scope="col-md-4">Message</th>
-            <th scope="col-md-4">Evento</th>
+            <th scope="col-md-4">Event</th>
           </tr>
         </thead>
         <tbody>
