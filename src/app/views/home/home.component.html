@@ -16,10 +16,9 @@
         Information</span>
     </div>
 
-    <div class="col text-center menu_option_4" (click)="selectOptionReservation(4)">
-      <span class="menu_text"><fa-icon [icon]="iconuser"></fa-icon> <br>Guest
-        Reservations</span>
-    </div>
+    <!-- <div class="col text-center menu_option_4" (click)="selectOptionReservation(4)">
+      <span class="menu_text"><fa-icon [icon]="iconuser"></fa-icon> <br>Significant Other Reservations</span>
+    </div> -->
 
     <div class="col text-center menu_option_5" (click)="selectOptionReservation(5)">
       <span class="menu_text"><fa-icon [icon]="iconNotes"></fa-icon><br> Agenda / Reminder Notes</span>
@@ -117,12 +116,41 @@
               </div>
               <div class="booking-card-content">
                 <div class="booking-card-description">
-                  <h1>Booking Data</h1>
+                  <!-- <h1>Booking Data</h1> -->
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
                     {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation}} PM</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.on_Board_Hotel}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.hotel_Name}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="col-md-12 text-center pt-4" style="" *ngIf="isViewCompanion == true">
+        <h2 style="font-weight: 600;">Guest {{dataInformationCompanionEmail.name_companion | titlecase }} <fa-icon
+            [icon]="faHand" style=""></fa-icon> </h2>
+      </div>
+      <div class="row col-md-12 mt-4" *ngIf="isViewCompanion == true">
+        <div class="col-md-12 mt-3">
+          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Excursions Reservations</div>
+        </div>
+        <div class="col-md-6 mt-4" *ngFor="let item of dataActivityCompanion;">
+          <div class="wrapper">
+            <div class="booking-card-wrapper">
+              <div class="booking-card-image">
+                <img class="booking-card-image" src="{{item.url}}" />
+              </div>
+              <div class="booking-card-content">
+                <div class="booking-card-description">
+                  <!-- <h1>Booking Data</h1> -->
+                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
+                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation}} PM</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.hotel_Name}}</p>
                 </div>
               </div>
             </div>
@@ -130,37 +158,14 @@
         </div>
       </div>
     </div>
+    </div>
 
     <div class="col-md-12" *ngIf="selectOption == 3">
       <div class="col-md-12 text-center pt-4" style="">
-        <h2 style="font-weight: 600;">Welcome {{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }}
+        <h2 style="font-weight: 600;">{{userInfo?.name | titlecase }} {{userInfo?.lastname | titlecase }}
           <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
       </div>
       <div class="row col-md-12 mt-4">
-        <div class="col-md-6">
-          <div class="wrapper">
-            <div class="booking-card-wrapper">
-              <div class="booking-card-image">
-                <img class="booking-card-image" src="../../../assets/img/departure.png" />
-              </div>
-              <div class="booking-card-content">
-                <div class="booking-card-description">
-                  <h1>Arrival Information</h1>
-                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationArrival.lastname}}
-                    {{dataInformationArrival.name}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Arriving to:</span>
-                    {{dataInformationArrival.name_hotel}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Arrival Date and Time:</span>
-                    {{dataInformationArrival.arrival_Date | date: 'EEEE, MMMM d, y' }} /
-                    {{dataInformationArrival.arrival_Time | convertFrom24To12Format}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Airline & Flight No:</span>
-                    {{dataInformationArrival.name_airline}} & #{{dataInformationArrival.flight_Number}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div class="col-md-6">
           <div class="wrapper">
             <div class="booking-card-wrapper">
@@ -188,6 +193,44 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-12 text-center pt-4" style="" *ngIf="isViewCompanion == true">
+        <h2 style="font-weight: 600;">Guest {{dataInformationCompanionEmail.name_companion | titlecase }} <fa-icon
+            [icon]="faHand" style=""></fa-icon> </h2>
+      </div>
+
+      <div class="row col-md-12 mt-4 mb-4" *ngIf="isViewCompanion == true">
+        <div class="col-md-12 mt-3 mb-3">
+          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Flight Reservations</div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="wrapper">
+            <div class="booking-card-wrapper">
+              <div class="booking-card-image">
+                <img class="booking-card-image" src="../../../assets/img/arrival.png" />
+              </div>
+              <div class="booking-card-content">
+                <div class="booking-card-description">
+                  <h1>Departure Information</h1>
+                  <p class="mt-1" style="font-weight: 800;"><span style="font-weight: 800;">Pick Up:</span>
+                    {{dataInformationDepartureCompanion.departure_Time_Appointment | convertFrom24To12Format}}</p>
+                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationDepartureCompanion.lastname}}
+                    {{dataInformationDepartureCompanion.name}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Hotel Departure:</span>
+                    {{dataInformationDepartureCompanion.name_hotel}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Departure:</span>
+                    {{dataInformationDepartureCompanion.departure_Date | date: 'EEEE, MMMM d, y'}} /
+                    {{dataInformationDepartureCompanion.departure_Time | convertFrom24To12Format}}</p>
+                  <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span>
+                    {{dataInformationDepartureCompanion.name_airline}} @ #{{dataInformationDepartureCompanion.flight_Number}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="col-md-12" *ngIf="selectOption == 4">
@@ -241,87 +284,6 @@
         </div>
       </div>
 
-      <div class="row col-md-12 mt-4" *ngIf="isViewCompanion == true">
-        <div class="col-md-12 mt-3">
-          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Excursions Reservations</div>
-        </div>
-        <div class="col-md-6 mt-4" *ngFor="let item of dataActivity;">
-          <div class="wrapper">
-            <div class="booking-card-wrapper">
-              <div class="booking-card-image">
-                <img class="booking-card-image" src="{{item.url}}" />
-              </div>
-              <div class="booking-card-content">
-                <div class="booking-card-description">
-                  <h1>Booking Data</h1>
-                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
-                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation}} PM</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.on_Board_Hotel}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row col-md-12 mt-4 mb-4" *ngIf="isViewCompanion == true">
-        <div class="col-md-12 mt-3 mb-3">
-          <div class="col-md-12 text-center" style="font-size: 24px;font-weight: 500;">Flight Reservations</div>
-        </div>
-        <div class="col-md-6">
-          <div class="wrapper">
-            <div class="booking-card-wrapper">
-              <div class="booking-card-image">
-                <img class="booking-card-image" src="../../../assets/img/departure.png" />
-              </div>
-              <div class="booking-card-content">
-                <div class="booking-card-description">
-                  <h1>Arrival Information</h1>
-                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationArrival?.lastname}}
-                    {{dataInformationArrival?.name}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Hotel Arrival:</span>
-                    {{dataInformationArrival?.name_hotel}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Arrival:</span>
-                    {{dataInformationArrival?.arrival_Date | date: 'EEEE, MMMM d, y' }} /
-                    {{dataInformationArrival.arrival_Time | convertFrom24To12Format}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span>
-                    {{dataInformationArrival?.name_airline}} @ #{{dataInformationArrival?.flight_Number}}</p>
-                  <!-- <p class="mt-1"><span style="font-weight: 600;">:</span> </p> -->
-                  <!-- <p class="mt-1"><span style="font-weight: 600;">Pick Up:</span> 09:00 PM</p> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="wrapper">
-            <div class="booking-card-wrapper">
-              <div class="booking-card-image">
-                <img class="booking-card-image" src="../../../assets/img/arrival.png" />
-              </div>
-              <div class="booking-card-content">
-                <div class="booking-card-description">
-                  <h1>Departure Information</h1>
-                  <p class="mt-1" style="font-weight: 800;"><span style="font-weight: 800;">Pick Up:</span>
-                    {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
-                  <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationDeparture.lastname}}
-                    {{dataInformationDeparture.name}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Hotel Departure:</span>
-                    {{dataInformationDeparture.name_hotel}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Date and Time Departure:</span>
-                    {{dataInformationDeparture.departure_Date | date: 'EEEE, MMMM d, y'}} /
-                    {{dataInformationDeparture.departure_Time | convertFrom24To12Format}}</p>
-                  <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span>
-                    {{dataInformationDeparture.name_airline}} @ #{{dataInformationDeparture.flight_Number}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="text-center" *ngIf="isViewCompanion == false">
         <h2 style="font-weight: 600;">No companion</h2>
@@ -368,7 +330,7 @@
             <th>{{i+1}}</th>
             <td>{{item.title}}</td>
             <td>{{item.message}}</td>
-            <td>Aerotek</td>
+            <td>Aston Carter</td>
           </tr>
         </tbody>
       </table>
@@ -378,7 +340,7 @@
 
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 
-      <img src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
+      <img src="../../../assets/img/qrvisitaxaston.png" alt="" width="400">
 
       <h2>To pay the visitax, please go to <a href="https://www.visitax.gob.mx/sitio/">https://www.visitax.gob.mx/sitio/</a></h2>
     </div>

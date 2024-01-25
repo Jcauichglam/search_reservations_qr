@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class EventsService {
 
   urlApi = environment.urlApibase;
+  event_id = environment.event_id;
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +17,6 @@ export class EventsService {
   }
 
   GetEventInformationById(id: any) {
-    return this.http.get<any>(`${this.urlApi}/events/${id}/detail/documents`);
+    return this.http.get<any>(`${this.urlApi}/events/${this.event_id}/detail/documents`);
   }
 }

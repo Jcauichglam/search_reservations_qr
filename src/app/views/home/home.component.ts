@@ -10,6 +10,7 @@ import { ActivityService } from 'src/app/shared/services/activity.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { EventsService } from 'src/app/shared/services/events.service';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -39,8 +40,10 @@ export class HomeComponent implements OnInit{
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   isViewCompanion: boolean = false;
   dataEvent: any = [];
-  event_id = 1;
+  event_id = environment.event_id;
   notifications: any;
+  dataInformationDepartureCompanion: any;
+  dataActivityCompanion: any;
 
   constructor(
     private router: Router,
@@ -58,7 +61,6 @@ export class HomeComponent implements OnInit{
     this.getCompanionInformation()
     this.getInformationUser();
     this.getAllMyReservations();
-
   }
 
   getUrlParams(){
@@ -76,22 +78,35 @@ export class HomeComponent implements OnInit{
     }
     else if(option == 2){
       this.getListReservationActivity();
+      if(this.dataInformationCompanionEmail.email_companion != "" && this.dataInformationCompanionEmail.email_companion != null){
+        this.isViewCompanion = true;
+        this.getListReservationActivityCompanion();
+      }else{
+        this.isViewCompanion = false;
+      }
     }else if(option == 4){
       if(this.dataInformationCompanionEmail.email_companion != "" && this.dataInformationCompanionEmail.email_companion != null){
         this.dataInformationArrival = null;
         this.dataInformationDeparture = null;
         this.dataResertaurantReservation = null;
         this.getListReservationCompanionRestaurant();
-        this.getListReservationActivityCompanion();
-        this.getDataArrivalCompanion();
-        this.getDataDepartureCompanion();
+        // this.getListReservationActivityCompanion();
+        // this.getDataArrivalCompanion();
+        // this.getDataDepartureCompanion();
         this.isViewCompanion = true;
       }else{
         this.isViewCompanion = false;
       }
     }else if(option == 3){
-      this.getDataArrival();
       this.getDataDeparture();
+      if(this.dataInformationCompanionEmail.email_companion != "" && this.dataInformationCompanionEmail.email_companion != null){
+        this.isViewCompanion = true;
+        this.getDataDepartureCompanion();
+      }else{
+        this.isViewCompanion = false;
+      }
+      // this.getDataArrival();
+
     }else if(option == 5){
       this.getEventsByUserId();
     }else if(option == 6){
@@ -108,20 +123,21 @@ export class HomeComponent implements OnInit{
   }
 
   getEventsByUserId(){
-    this.ngxService.start();
-    debugger;
     this.dataEvent = [];
-    this.eventServices.getAllEventsUser(this.userInfoRestaurant.id).subscribe(result =>{
-      result.forEach(element => {
-        this.eventServices.GetEventInformationById(element.event_Id).subscribe(result =>{
-          if(result != null){
-            this.dataEvent.push(result);
-          }
 
-          this.ngxService.stop();
-        })
-      });
-    })
+    if(this.userInfoRestaurant != null){
+      this.ngxService.start();
+      this.eventServices.getAllEventsUser(this.userInfoRestaurant.id).subscribe(result =>{
+        result.forEach(element => {
+          this.eventServices.GetEventInformationById(this.event_id).subscribe(result =>{
+            if(result != null){
+              this.dataEvent.push(result);
+            }
+          })
+        });
+        this.ngxService.stop();
+      })
+    }
   }
 
   getListReservationCompanion(){
@@ -129,11 +145,13 @@ export class HomeComponent implements OnInit{
   }
 
   getAllMyReservations(){
-    this.ngxService.start();
-    this.restaurantService.GetMyReservationsByParticipantId(this.userInfoRestaurant.id).subscribe(result => {
-      this.dataReservationsOwner = result;
-      this.ngxService.stop();
-    })
+    if(this.userInfoRestaurant != null){
+      this.ngxService.start();
+      this.restaurantService.GetMyReservationsByParticipantId(this.userInfoRestaurant.id).subscribe(result => {
+        this.dataReservationsOwner = result;
+        this.ngxService.stop();
+      })
+    }
   }
 
   showModalListCompanion(id, Date_Reservation){
@@ -218,7 +236,7 @@ export class HomeComponent implements OnInit{
   getListReservationActivityCompanion(){
     this.ngxService.start();
     this.activitieService.getActivityByeEmail(this.dataInformationCompanionEmail.email_companion).subscribe(result => {
-      this.dataActivity = result;
+      this.dataActivityCompanion = result;
       this.ngxService.stop();
     })
   }
@@ -242,7 +260,7 @@ export class HomeComponent implements OnInit{
   getDataDepartureCompanion(){
     this.ngxService.start();
     this.userService.getInformationUser(this.dataInformationCompanionEmail.email_companion, 2).subscribe(result => {
-      this.dataInformationDeparture = result;
+      this.dataInformationDepartureCompanion = result;
       this.ngxService.stop();
     })
   }

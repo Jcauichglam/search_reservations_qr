@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class NotificationService {
 
   urlApi = environment.urlApibase;
-  group = "aerotek";
+  group = "aston";
   event_id = environment.event_id;
 
   httpOptions = {

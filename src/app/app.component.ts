@@ -32,7 +32,7 @@ export class AppComponent {
         if (currentToken) {
           console.log("Hurraaa!!! we got the token.....");
           console.log(currentToken);
-          this.subscribeTokenToTopic(currentToken, "aerotek");
+          this.subscribeTokenToTopic(currentToken, "aston");
         } else {
           console.log('No registration token available. Request permission to generate one.');
         }
