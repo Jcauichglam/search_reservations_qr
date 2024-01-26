@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent  {
+export class SearchComponent {
 
   formSearch: FormGroup;
   event_id = environment.event_id;
@@ -20,14 +20,14 @@ export class SearchComponent  {
       id: 1,
       name: 'Georgia'
     },
-     {
-       id: 2,
-       name: 'Usa'
-     },
-     {
-       id: 3,
-       name: 'England'
-     }
+    {
+      id: 2,
+      name: 'Usa'
+    },
+    {
+      id: 3,
+      name: 'England'
+    }
   ];
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -38,13 +38,13 @@ export class SearchComponent  {
     this.initFormSearch();
   }
 
-  initFormSearch(){
+  initFormSearch() {
     this.formSearch = this.fb.group({
       email: ['', Validators.required]
     });
   }
 
-  searchReservation(){
+  searchReservation() {
     this.router.navigate(
       ['/search'],
       { queryParams: { email: this.formSearch.controls['email'].value } }
@@ -58,14 +58,17 @@ export class SearchComponent  {
 
   onChangeSearch(val: string) {
     this.userServices.getSearchUserAuto(this.event_id, val).subscribe(result => {
-      console.log(result);
+      if (this.event_id == 9) {
+        let index = result.findIndex(c => c.email == "tkelly@aerotek.com" || c.email == "sjenkins@aerotek.com");
+        result.splice(index, 1);
+      }
       this.result_people = result;
     })
     // fetch remote data from here
     // And reassign the 'data' which is binded to 'data' property.
   }
 
-  onFocused(e){
+  onFocused(e) {
     // do something when input is focused
   }
 
