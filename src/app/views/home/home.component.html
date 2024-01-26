@@ -44,60 +44,117 @@
           <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
       </div>
 
-      <div class="row col-md-12 shadow mt-5"
-        style="padding: 10px 20px 10px 20px;border: 1px solid #ede0e0;margin: 0px;border-radius: 5px;"
-        *ngFor="let item of dataReservationsOwner; let i = index;">
-        <div class="col-md-12 text-center" style="padding: 10px 0px">
-          <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
-              *ngIf="item.type_Reservation == 2">Reservation</span> <span
-              *ngIf="item.type_Reservation == 1">Reservation</span></span>
-          <span style="font-size: 20px;" *ngIf="item.type_participant == 'companion'"><span
-              *ngIf="item.type_Reservation == 2">Reservation</span> <span
-              *ngIf="item.type_Reservation == 1">Reservation</span></span>
-        </div>
-        <hr>
+      <div *ngIf="event_id != 9">
+        <div class="row col-md-12 shadow mt-5 card-restaurant" *ngFor="let item of dataReservationsOwner; let i = index;">
+          <div class="col-md-12 text-center" style="padding: 10px 0px">
+            <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
+                *ngIf="item.type_Reservation == 2">Reservation</span> <span
+                *ngIf="item.type_Reservation == 1">Reservation</span></span>
+            <span style="font-size: 20px;" *ngIf="item.type_participant == 'companion'"><span
+                *ngIf="item.type_Reservation == 2">Reservation</span> <span
+                *ngIf="item.type_Reservation == 1">Reservation</span></span>
+          </div>
+          <hr>
 
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">#Ticket:</span>
-          <br>
-          <span class="color_primary" style="font-size: 18px;">{{item.id}}</span>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">#Ticket:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.id}}</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Restaurant:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.name_restaurant}}</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Host:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.name}} {{item.lastName}}</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Guest:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.companion_name}}
+              {{item.companion_lastname}}</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Date:</span>
+            <br>
+            <span style="font-size: 18px;">{{item.date_Reservation | date: 'MM-dd-YYYY'}}</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Pick Up:</span>
+            <br>
+            <span style="font-size: 18px;">{{item.pickUp}} PM</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Reservation:</span>
+            <br>
+            <span style="font-size: 18px;">{{item.time_Reservation}} PM</span>
+          </div>
+          <div class="col-sm-12 col-md" style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+            <button class="btn background_primary text-white" *ngIf="item.type_participant == 'owner'"
+              (click)="showModalListCompanion(item.id, item.date_Reservation)">Attendee list</button>
+            <button class="btn background_primary text-white" *ngIf="item.type_participant != 'owner'"
+              (click)="showModalListCompanionView(item.id, item.date_Reservation)">Attendee list</button>
+          </div>
         </div>
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">Restaurant:</span>
-          <br>
-          <span class="color_primary" style="font-size: 18px;">{{item.name_restaurant}}</span>
-        </div>
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">Host:</span>
-          <br>
-          <span class="color_primary" style="font-size: 18px;">{{item.name}} {{item.lastName}}</span>
-        </div>
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">Guest:</span>
-          <br>
-          <span class="color_primary" style="font-size: 18px;">{{item.companion_name}}
-            {{item.companion_lastname}}</span>
-        </div>
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">Date:</span>
-          <br>
-          <span style="font-size: 18px;">{{item.date_Reservation | date: 'MM-dd-YYYY'}}</span>
-        </div>
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">Pick Up:</span>
-          <br>
-          <span style="font-size: 18px;">{{item.pickUp}} PM</span>
-        </div>
-        <div class="col-sm-12 col-md">
-          <span style="font-size: 14px;">Reservation:</span>
-          <br>
-          <span style="font-size: 18px;">{{item.time_Reservation}} PM</span>
-        </div>
-        <div class="col-sm-12 col-md" style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
-          <button class="btn background_primary text-white" *ngIf="item.type_participant == 'owner'"
-            (click)="showModalListCompanion(item.id, item.date_Reservation)">Attendee list</button>
-          <button class="btn background_primary text-white" *ngIf="item.type_participant != 'owner'"
-            (click)="showModalListCompanionView(item.id, item.date_Reservation)">Attendee list</button>
+      </div>
+
+      <div *ngIf="event_id == 9">
+        <div class="row col-md-12 shadow mt-5 card-restaurant" *ngFor="let item of dataReservationsOwner; let i = index;">
+          <div class="col-md-12 text-center" style="padding: 10px 0px">
+            <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
+                *ngIf="item.type_Reservation == 2">Reservation</span> <span
+                *ngIf="item.type_Reservation == 1">Reservation</span></span>
+            <span style="font-size: 20px;" *ngIf="item.type_participant == 'companion'"><span
+                *ngIf="item.type_Reservation == 2">Reservation</span> <span
+                *ngIf="item.type_Reservation == 1">Reservation</span></span>
+          </div>
+          <hr>
+
+          <!-- <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">#Ticket:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.id}}</span>
+          </div> -->
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Restaurant:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.name_restaurant}}</span>
+          </div>
+          <!-- <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Host:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.name}} {{item.lastName}}</span>
+          </div> -->
+          <!-- <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Guest:</span>
+            <br>
+            <span class="color_primary" style="font-size: 18px;">{{item.companion_name}}
+              {{item.companion_lastname}}</span>
+          </div> -->
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Date:</span>
+            <br>
+            <span style="font-size: 18px;">{{item.date_Reservation | date: 'MM-dd-YYYY'}}</span>
+          </div>
+          <div class="col-sm-12 col-md" *ngIf="item.pickUp != ''">
+            <span style="font-size: 14px;">Pick Up:</span>
+            <br>
+            <span style="font-size: 18px;">{{item.pickUp}}</span>
+          </div>
+          <div class="col-sm-12 col-md">
+            <span style="font-size: 14px;">Reservation:</span>
+            <br>
+            <span style="font-size: 18px;">{{item.time_Reservation}}</span>
+          </div>
+          <!-- <div class="col-sm-12 col-md" style="display: flex;flex-direction: column;align-items: center;justify-content: center;">
+            <button class="btn background_primary text-white" *ngIf="item.type_participant == 'owner'"
+              (click)="showModalListCompanion(item.id, item.date_Reservation)">Attendee list</button>
+            <button class="btn background_primary text-white" *ngIf="item.type_participant != 'owner'"
+              (click)="showModalListCompanionView(item.id, item.date_Reservation)">Attendee list</button>
+          </div> -->
         </div>
       </div>
     </div>
@@ -330,7 +387,7 @@
             <th>{{i+1}}</th>
             <td>{{item.title}}</td>
             <td>{{item.message}}</td>
-            <td>Aston Carter</td>
+            <td>Aerotek Recruiter & ARM Summit</td>
           </tr>
         </tbody>
       </table>
@@ -340,7 +397,7 @@
 
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 
-      <img src="../../../assets/img/qrvisitaxaston.png" alt="" width="400">
+      <img src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
 
       <h2>To pay the visitax, please go to <a href="https://www.visitax.gob.mx/sitio/">https://www.visitax.gob.mx/sitio/</a></h2>
     </div>

@@ -168,7 +168,7 @@ button:hover {
   cursor: pointer;
 }
 
-.menu_option_7{
+.menu_option_7 {
   background-color: #068bd3;
   padding: 20px 0px;
   cursor: pointer;
@@ -178,6 +178,13 @@ button:hover {
   color: #fff;
   font-size: 22px;
   font-weight: 900;
+}
+
+.card-restaurant {
+  padding: 10px 20px 10px 20px;
+  border: 1px solid #ede0e0;
+  margin: 0px;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -217,7 +224,7 @@ button:hover {
     cursor: pointer;
   }
 
-  .menu_option_6{
+  .menu_option_6 {
     background-color: #1684bf;
     padding: 20px 15px;
     cursor: pointer;
