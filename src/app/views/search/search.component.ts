@@ -59,15 +59,14 @@ export class SearchComponent {
   onChangeSearch(val: string) {
     this.userServices.getSearchUserAuto(this.event_id, val).subscribe(result => {
       if (this.event_id == 9) {
-        let index = result.findIndex(c => c.email == "tkelly@aerotek.com" 
+        let index = result.findIndex(c => c.email == "tkelly@aerotek.com"
         || c.email == "sjenkins@aerotek.com"
         || c.email == "lzauhar@aerotek.com"
         || c.email == "sschmick@aerotek.com"
         || c.email == "kemartin@aerotek.com"
         || c.email == "jcolvin@aerotek.com"
         || c.email == "jpaulsen@aerotek.com"
-        || c.email == "lzauhar@aerotek.com"
-        || c.email == "jcolvin@aerotek.com");
+        || c.email == "tbartolu@aerotek.com");
         result.splice(index, 1);
       }
       this.result_people = result;

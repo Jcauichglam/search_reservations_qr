@@ -8,7 +8,7 @@ export class ConvertFrom24To12FormatPipe implements PipeTransform {
   transform(time: any): any {
     let hour = (time.split(':'))[0]
     let min = (time.split(':'))[1]
-    let part = hour > 12 ? 'PM' : 'AM';
+    let part = hour > 12 ? 'AM' : 'PM';
     if(parseInt(hour) == 0)
      hour = 12;
     min = (min+'').length == 1 ? `0${min}` : min;

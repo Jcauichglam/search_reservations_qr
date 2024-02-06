@@ -44,7 +44,7 @@
           <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
       </div>
 
-      <div *ngIf="event_id != 9">
+      <div *ngIf="event_id != 9 && event_id != 10">
         <div class="row col-md-12 shadow mt-5 card-restaurant" *ngFor="let item of dataReservationsOwner; let i = index;">
           <div class="col-md-12 text-center" style="padding: 10px 0px">
             <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <div *ngIf="event_id == 9">
+      <div *ngIf="event_id == 9 || event_id == 10">
         <div class="row col-md-12 shadow mt-5 card-restaurant" *ngFor="let item of dataReservationsOwner; let i = index;">
           <div class="col-md-12 text-center" style="padding: 10px 0px">
             <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
@@ -177,7 +177,7 @@
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
-                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation | convertFrom24To12Format}}</p>
+                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation | format12hours}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.hotel_Name}}</p>
                 </div>
               </div>
@@ -206,7 +206,7 @@
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{item.lastName}} {{item.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Activity Name:</span> {{item.name_activity}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Date and Time:</span>
-                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation  | convertFrom24To12Format }} </p>
+                    {{item.date_Reservation | date: 'EEEE, MMMM d, y' }} / {{item.time_Reservation  | format12hours }} </p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel:</span> {{item.hotel_Name}}</p>
                 </div>
               </div>
@@ -233,14 +233,14 @@
                 <div class="booking-card-description">
                   <h1>Departure Information</h1>
                   <p class="mt-1" style="font-weight: 800;"><span style="font-weight: 800;">Departure from hotel:</span>
-                    {{dataInformationDeparture.departure_Time_Appointment | convertFrom24To12Format}}</p>
+                    {{dataInformationDeparture.departure_Time_Appointment | format12hours}}</p>
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationDeparture.lastname}}
                     {{dataInformationDeparture.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Departing from:</span>
                     {{dataInformationDeparture.name_hotel}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Departure Date and Time:</span>
                     {{dataInformationDeparture.departure_Date | date: 'EEEE, MMMM d, y'}} /
-                    {{dataInformationDeparture.departure_Time | convertFrom24To12Format}}</p>
+                    {{dataInformationDeparture.departure_Time | format12hours}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Airline & Flight No:</span>
                     {{dataInformationDeparture.name_airline}} & #{{dataInformationDeparture.flight_Number}}</p>
                   <br>
@@ -271,14 +271,14 @@
                 <div class="booking-card-description">
                   <h1>Departure Information</h1>
                   <p class="mt-1" style="font-weight: 800;"><span style="font-weight: 800;">Pick Up:</span>
-                    {{dataInformationDepartureCompanion.departure_Time_Appointment | convertFrom24To12Format}}</p>
+                    {{dataInformationDepartureCompanion.departure_Time_Appointment | format12hours}}</p>
                   <p><span class="mt-2" style="font-weight: 600;">Name:</span> {{dataInformationDepartureCompanion.lastname}}
                     {{dataInformationDepartureCompanion.name}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Hotel Departure:</span>
                     {{dataInformationDepartureCompanion.name_hotel}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Date and Time Departure:</span>
                     {{dataInformationDepartureCompanion.departure_Date | date: 'EEEE, MMMM d, y'}} /
-                    {{dataInformationDepartureCompanion.departure_Time | convertFrom24To12Format}}</p>
+                    {{dataInformationDepartureCompanion.departure_Time | format12hours}}</p>
                   <p class="mt-1"><span style="font-weight: 600;">Airline@No.Flight:</span>
                     {{dataInformationDepartureCompanion.name_airline}} @ #{{dataInformationDepartureCompanion.flight_Number}}</p>
                 </div>
@@ -387,7 +387,9 @@
             <th>{{i+1}}</th>
             <td>{{item.title}}</td>
             <td>{{item.message}}</td>
-            <td>Aerotek Recruiter & ARM Summit</td>
+            <td *ngIf="event_id  == 5">Aston Carter Cancun</td>
+            <td *ngIf="event_id  == 1">Aerotek Cancun</td>
+            <td *ngIf="event_id  == 9">Aerotek RCT</td>
           </tr>
         </tbody>
       </table>
@@ -397,7 +399,9 @@
 
     <div style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
 
-      <img src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
+      <img *ngIf="event_id == 1" src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
+      <img *ngIf="event_id == 9" src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
+      <img *ngIf="event_id == 5" src="../../../assets/img/qrvisitaxaston.png" alt="" width="400">
 
       <h2>To pay the visitax, please go to <a href="https://www.visitax.gob.mx/sitio/">https://www.visitax.gob.mx/sitio/</a></h2>
     </div>

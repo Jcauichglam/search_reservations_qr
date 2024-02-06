@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApibase: "https://localhost:44336/api/v1",
+  urlApibase: "https://dmccancunapi.azurewebsites.net/api/v1",
   firebase: {
     apiKey: "AIzaSyAv3jouDASbbTg57oWKKj32LwYBf8_B-U0",
     authDomain: "dmc-cancun.firebaseapp.com",
@@ -15,8 +15,8 @@ export const environment = {
     measurementId: "G-F9X9D2R7BM",
     vapidKey: "BDfj_cN9U6vwKwekfBkZlKH7Yp35FZHkp9Uck4fAk5YVCTILTEwz6lg50E5uBVJdT38vPb2LJ805cMBKSI2JauM"
   },
-  event_id: 9,
-  group: "aerotekrct"
+  event_id: 6,
+  group: "actalent"
 };
 
 /*
