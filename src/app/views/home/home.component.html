@@ -44,7 +44,7 @@
           <fa-icon [icon]="faHand" style=""></fa-icon> </h2>
       </div>
 
-      <div *ngIf="event_id != 9 && event_id != 10">
+      <div *ngIf="event_id != 9 && event_id != 10 && event_id != 11">
         <div class="row col-md-12 shadow mt-5 card-restaurant" *ngFor="let item of dataReservationsOwner; let i = index;">
           <div class="col-md-12 text-center" style="padding: 10px 0px">
             <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
@@ -101,7 +101,7 @@
         </div>
       </div>
 
-      <div *ngIf="event_id == 9 || event_id == 10">
+      <div *ngIf="event_id == 9 || event_id == 10 || event_id == 11">
         <div class="row col-md-12 shadow mt-5 card-restaurant" *ngFor="let item of dataReservationsOwner; let i = index;">
           <div class="col-md-12 text-center" style="padding: 10px 0px">
             <span style="font-size: 20px;" *ngIf="item.type_participant == 'owner'"><span
@@ -390,6 +390,7 @@
             <td *ngIf="event_id  == 5">Aston Carter Cancun</td>
             <td *ngIf="event_id  == 1">Aerotek Cancun</td>
             <td *ngIf="event_id  == 9">Aerotek RCT</td>
+            <td *ngIf="event_id  == 11">TEKsystems and Aston Carter Recruiter Summit</td>
           </tr>
         </tbody>
       </table>
@@ -402,6 +403,7 @@
       <img *ngIf="event_id == 1" src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
       <img *ngIf="event_id == 9" src="../../../assets/img/qrvisitaxaerotek.png" alt="" width="400">
       <img *ngIf="event_id == 5" src="../../../assets/img/qrvisitaxaston.png" alt="" width="400">
+      <img *ngIf="event_id == 11" src="../../../assets/img/qrcodetek.png" alt="" width="400">
 
       <h2>To pay the visitax, please go to <a href="https://www.visitax.gob.mx/sitio/">https://www.visitax.gob.mx/sitio/</a></h2>
     </div>

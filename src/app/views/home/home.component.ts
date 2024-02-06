@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit{
     this.getCompanionInformation()
     this.getInformationUser();
     this.getAllMyReservations();
+    alert(this.event_id);
   }
 
   getUrlParams(){
@@ -147,7 +148,7 @@ export class HomeComponent implements OnInit{
 
   getAllMyReservations(){
     debugger;
-    if(this.event_id != 9 && this.event_id != 10){
+    if(this.event_id != 9 && this.event_id != 10 && this.event_id != 11){
       if(this.userInfoRestaurant != null){
         this.ngxService.start();
         this.restaurantService.GetMyReservationsByParticipantId(this.userInfoRestaurant.id).subscribe(result => {
@@ -222,6 +223,48 @@ export class HomeComponent implements OnInit{
         companion_lastname: "Foxx",
         companion_name: "Mona",
         date_Reservation: "02/04/2024 00:00:00",
+        email: "dfoxx@actalentservices.com",
+        id: 184,
+        lastName: "Foxx",
+        name: "Dee",
+        name_hotel: "JW MARRIOTT",
+        name_restaurant: "After Dinner Party at Confessions",
+        pax: 8,
+        pickUp: "",
+        time_Reservation: "9:00 PM",
+        type_Reservation: 2,
+        type_participant: "owner"
+      };
+      reservationArray.push(reservationObject);
+
+      this.dataReservationsOwner = reservationArray;
+    }
+    else if(this.event_id == 11){
+
+      let reservationObject = {
+        companion_lastname: "Foxx",
+        companion_name: "Mona",
+        date_Reservation: "02/10/2024 00:00:00",
+        email: "dfoxx@actalentservices.com",
+        id: 184,
+        lastName: "Foxx",
+        name: "Dee",
+        name_hotel: "JW MARRIOTT",
+        name_restaurant: "DINNER AT PAROLE",
+        pax: 8,
+        pickUp: "6:30 PM",
+        time_Reservation: "7:00 PM",
+        type_Reservation: 2,
+        type_participant: "owner"
+      };
+      const reservationArray: any[] = [];
+
+      reservationArray.push(reservationObject);
+
+      reservationObject = {
+        companion_lastname: "Foxx",
+        companion_name: "Mona",
+        date_Reservation: "02/10/2024 00:00:00",
         email: "dfoxx@actalentservices.com",
         id: 184,
         lastName: "Foxx",
