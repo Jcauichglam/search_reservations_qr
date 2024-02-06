@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { PasswordComponent } from 'src/app/shared/modal/password/password.component';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { environment } from 'src/environments/environment';
 
@@ -29,9 +31,13 @@ export class SearchComponent {
       name: 'England'
     }
   ];
+  isValid: boolean;
+  submmit: boolean;
+
   constructor(private fb: FormBuilder,
     private router: Router,
-    private userServices: UsersService) {
+    private userServices: UsersService,
+    private modalService: BsModalService,) {
   }
 
   ngOnInit(): void {
@@ -45,10 +51,28 @@ export class SearchComponent {
   }
 
   searchReservation() {
-    this.router.navigate(
-      ['/search'],
-      { queryParams: { email: this.formSearch.controls['email'].value } }
-    );
+    this.submmit = true;
+    if(!this.formSearch.valid)
+    return;
+    
+    let modal = this.modalService.show(PasswordComponent, {
+      class: 'modal-dialog-centered'
+    });
+    modal.content.email = this.formSearch.get("email").value;
+
+    modal.content.result$.subscribe(isValid => {
+      this.isValid = isValid;
+      if (!this.isValid)
+        return;
+      modal.hide();
+      var object = { value: this.isValid, expiry: new Date().getTime() + 60000 }
+
+      localStorage.setItem("access", JSON.stringify(object));
+      this.router.navigate(
+        ['/search'],
+        { queryParams: { email: this.formSearch.controls['email'].value } }
+      );
+    });
   }
 
   selectEvent(item) {
@@ -57,6 +81,11 @@ export class SearchComponent {
   }
 
   onChangeSearch(val: string) {
+    if(!val) {
+      this.formSearch.get("email").setValue(val);
+      return;
+    }
+    
     this.userServices.getSearchUserAuto(this.event_id, val).subscribe(result => {
       if (this.event_id == 9) {
         let index = result.findIndex(c => c.email == "tkelly@aerotek.com"

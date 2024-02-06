@@ -265,7 +265,6 @@ export class HomeComponent implements OnInit{
 
   getInformationByEmail(){
     this.ngxService.start();
-    debugger;
     this.userService.getInformationUserRestaurant(this.email).subscribe(result => {
       this.userInfoRestaurant = result;
       this.selectOptionReservation(1);

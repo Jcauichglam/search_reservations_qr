@@ -20,6 +20,7 @@
       </div> -->
       <div class="input-group mb-0 w-100 ng-autocomplete">
         <ng-autocomplete
+          [ngClass]="{'is-invalid': !this.formSearch.valid && submmit}"
           [data]="result_people"
           [searchKeyword]="keyword"
           placeholder="Enter your email or name"
@@ -29,6 +30,9 @@
           [itemTemplate]="firstItemTemplate"
           [notFoundTemplate]="notFoundTemplate">
         </ng-autocomplete>
+        <div id="validationpassword" class="invalid-feedback">
+          Email is required.
+      </div>
 
         <ng-template #firstItemTemplate let-item>
         <a [innerHTML]="item.name"></a>

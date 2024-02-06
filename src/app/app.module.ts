@@ -24,6 +24,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ToastrModule } from 'ngx-toastr';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { Format12hoursPipe } from './format12hours.pipe';
+import { PasswordComponent } from './shared/modal/password/password.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -48,7 +49,8 @@ initializeApp(environment.firebase);
     ConvertFrom24To12FormatPipe,
     SearchComponent,
     NotificationFormComponent,
-    Format12hoursPipe
+    Format12hoursPipe,
+    PasswordComponent
   ],
   imports: [
     BrowserAnimationsModule,
