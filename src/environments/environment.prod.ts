@@ -11,6 +11,6 @@ export const environment = {
     measurementId: "G-F9X9D2R7BM",
     vapidKey: "BDfj_cN9U6vwKwekfBkZlKH7Yp35FZHkp9Uck4fAk5YVCTILTEwz6lg50E5uBVJdT38vPb2LJ805cMBKSI2JauM"
   },
-  event_id: 6,
-  group: "actalent"
+  event_id: 2,
+  group: "teksystems"
 };
