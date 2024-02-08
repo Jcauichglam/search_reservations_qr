@@ -61,7 +61,6 @@ export class HomeComponent implements OnInit{
     this.getCompanionInformation()
     this.getInformationUser();
     this.getAllMyReservations();
-    alert(this.event_id);
   }
 
   getUrlParams(){
